@@ -26,3 +26,7 @@ mlruns/
 # OS files
 .DS_Store
 Thumbs.db
+
+config.json
+terraform.tfstate
+terraform.tfstate.backup

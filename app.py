@@ -2,6 +2,13 @@ from fastapi import FastAPI
 import pickle
 import numpy as np
 import logging
+import json
+
+with open("config.json") as f:
+    config=json.load(f)
+PORT=config.get("port",8000)
+MODEL_NAME=config.get("model","default_model")
+MODEL_VERSION=config.get("version","1.0")
 
 logging.basicConfig(level=logging.INFO,filename="app.log")
 
@@ -10,6 +17,15 @@ app=FastAPI()
 model=pickle.load(open("modelbasic.pkl","rb"))
 
 request_count=0
+
+@app.get("/")
+def home():
+    return {
+        "message": "ML API Running 🚀",
+        "model": MODEL_NAME,
+        "version": MODEL_VERSION
+    }
+
 
 @app.get('/predict')
 def predict(age:int,salary:int):
