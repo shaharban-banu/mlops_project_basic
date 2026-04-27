@@ -17,6 +17,7 @@ data/*.csv
 .dvcignore
 
 # MLflow
+mlflow.db
 mlruns/
 
 # Logs
